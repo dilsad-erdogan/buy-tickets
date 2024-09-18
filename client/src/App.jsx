@@ -1,10 +1,13 @@
+import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar/Navbar"
 
 function App() {
 
   return (
-    <div className="bg-white dark:bg-gray-800 dark:text-white duration-200 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 dark:text-white duration-200 overflow-hidden min-h-screen flex flex-col">
       <Navbar />
+
+      <Footer />
     </div>
   )
 }

@@ -12,7 +12,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Navbar right section */}
-                <div className="flex justify-between items-center gap-4">
+                <div className="flex justify-between items-center gap-4">                    
                     {/* Search section */}
                     <div className="relative group hidden sm:block">
                         <input type="text" placeholder="Search" className="search-bar" />
@@ -20,9 +20,10 @@ const Navbar = () => {
                     </div>
 
                     {/* Dark mode section */}
-                    <div>
-                        <Darkmode />
-                    </div>
+                    <Darkmode />
+
+                    {/* Login button */}
+                    <button className="text-purple-200 dark:text-purple-800 bg-purple-800 dark:bg-purple-200 cursor-pointer hover:scale-105 duration-300 py-2 px-8 rounded-full relative z-10">Login</button>
                 </div>
             </div>
         </div>
