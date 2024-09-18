@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="container">
             <div className="grid md:grid-cols-3 pb-6 pt-5">
                 {/* Details sections */}
-                <div className="py-8 px-8">
+                <div className="py-8 px-4">
                     <a href="#" className="text-primary font-semibold tracking-widest text-2xl uppercase sm:text-3xl text-purple-800 dark:text-purple-200">bu bilet</a>
                     <p className="text-purple-800 dark:text-purple-200 lg:pr-24 pt-3">Bu projede istediğiniz taşıttan, istediğiniz yerden istediğiniz yere bilet alabilirsiniz.</p>
                     <p className="text-purple-800 dark:text-purple-200 mt-4">Made with 💕 by The Dilşad Rukiye Erdoğan</p>
