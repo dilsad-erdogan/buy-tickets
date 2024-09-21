@@ -32,6 +32,11 @@ const Vehicles = [
 
 const Tickets = () => {
   const [clickedButton, setClickedButton] = useState(null);
+  
+  const [from, setFrom] = useState("Dikili");
+  const [to, setTo] = useState("Konya");
+  const [date, setDate] = useState("19 Eyl");
+  const [isToday, setIsToday] = useState(true);
 
   const handleClick = (name) => {
     setClickedButton(name);
@@ -40,7 +45,7 @@ const Tickets = () => {
   const searchClick = () => {};
 
   return (
-    <div className="container my-14 md:mt-20">
+    <div className="my-14 md:mt-20">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-2 gap-y-8">
             {Vehicles.map((vehicle) => (
                 <div key={vehicle.id} className="flex justify-center">
@@ -52,30 +57,57 @@ const Tickets = () => {
             ))}
         </div>
 
-        <div className="pt-10 justify-center items-center flex">
-            <div className="gap-6 grid grid-cols-1 sm:grid-cols-3">
-                <div className="p-8 m-8 mr-0 pr-0 gap-6">
-                    <div className="m-5">
-                        <input type="text" placeholder="Nereden" className="w-[300px] transition-all duration-300 rounded-full border border-purple-800 px-3 py-1 focus:outline-none dark:border-purple-200 dark:bg-gray-800 group-hover:dark:bg-gray-700" />
-                    </div>
-                    <div className="m-5">
-                        <input type="text" placeholder="Nereye" className="w-[300px] transition-all duration-300 rounded-full border border-purple-800 px-3 py-1 focus:outline-none dark:border-purple-200 dark:bg-gray-800 group-hover:dark:bg-gray-700" />
-                    </div>
-                </div>
+        <div className="flex justify-center items-center py-20">
+          <div className="bg-gray-200 dark:bg-gray-600 rounded-lg shadow-md items-center px-4 py-4">
+            <div className="p-5 grid grid-cols-1 lg:grid-cols-6 gap-4">
+              {/* Nereden */}
+              <div className="flex flex-col text-center md:text-left">
+                <span className="text-sm text-gray-600 dark:text-gray-200">Nereden</span>
+                <input type="text" className="text-lg font-semibold text-gray-600 dark:text-gray-200 bg-gray-200 dark:bg-gray-600" placeholder={from} value={from} onChange={(e) => {setFrom(e.target.value)}} />
+              </div>
 
-                <div className="py-8 my-8">
-                    <div className="m-5">Calender</div>
-                </div>
+              {/* Arrows (Swap) */}
+              <div className="flex justify-center items-center">
+                <button className="text-gray-600 dark:text-gray-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 10l-6 6m0 0l-6-6m6 6V4" />
+                  </svg>
+                </button>
+              </div>
 
-                <div className="p-8 m-8 pl-0 ml-0 max-w-[400px]">
-                    <button onClick={() => searchClick()} className="text-white bg-green-700 dark:text-gray-800 dark:bg-green-100 cursor-pointer duration-300 py-2 px-8 rounded-full relative z-10">
-                        <p className="m-3">Search</p>
-                    </button>
-                </div>                
+              {/* Nereye */}
+              <div className="flex flex-col text-center md:text-left">
+                <span className="text-sm text-gray-600 dark:text-gray-200">Nereye</span>
+                <input type="text" className="text-lg font-semibold text-gray-600 dark:text-gray-200 bg-gray-200 dark:bg-gray-600" placeholder={to} value={to} onChange={(e) => {setTo(e.target.value)}} />
+              </div>
+
+              {/* Gidiş Tarihi */}
+              <div className="flex flex-col text-center md:text-left">
+                <span className="text-sm text-gray-600 dark:text-gray-200">Gidiş Tarihi</span>
+                <span className="text-lg font-semibold text-gray-600 dark:text-gray-200">{date}</span>
+              </div>
+
+              {/* Bugün/Yarın Radyo Seçimi */}
+              <div className="flex items-center gap-4">
+                <label className="flex items-center space-x-2">
+                  <input type="radio" name="day" value="today" checked={isToday} onChange={() => setIsToday(true)} className="form-radio text-green-600" />
+                  <span className="text-gray-600 dark:text-gray-200">Bugün</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input type="radio" name="day" value="tomorrow" checked={!isToday} onChange={() => setIsToday(false)} className="form-radio text-green-600" />
+                  <span className="text-gray-600 dark:text-gray-200">Yarın</span>
+                </label>
+              </div>
+
+              {/* Otobüs Ara Butonu */}
+              <button className="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700" onClick={() => searchClick}>
+                Otobüs Ara
+              </button>              
             </div>
+          </div>
         </div>
     </div>
   )
 }
 
-export default Tickets
+export default Tickets;
