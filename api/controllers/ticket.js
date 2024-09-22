@@ -20,7 +20,7 @@ async function addTicket(req, res) {
         console.error(error);
         res.status(500).json({ message: error });
     }
-}; // denemedim
+};
 
 module.exports = {
     addTicket

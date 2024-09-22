@@ -26,19 +26,22 @@ const login = catchAsyncError(async (req, res) => {
     };
 
     try{
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email: email });
+        console.log(user);
 
         if(!user){
             return res.status(400).json({ success: false, error: 'Invalid email or password.' });
         }
 
-        if(password !== user.password){
-            sendToken(user, 201, res, 'Login successfully!');
+        if (password !== user.password) {
+            return res.status(400).json({ success: false, error: 'Invalid email or password.' });
         }
+
+        sendToken(user, 201, res, 'Login successfully!');
     } catch(error) {
-        res.status(500).json({ success: false, error: 'Internal server error!' });
+        return res.status(500).json({ success: false, error: 'Internal server error!' });
     }
-}); //çalışmadı
+});
 
 module.exports = {
     register,

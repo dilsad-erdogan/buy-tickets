@@ -101,7 +101,7 @@ const Tickets = () => {
 
               {/* Otobüs Ara Butonu */}
               <button className="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700" onClick={() => searchClick}>
-                Otobüs Ara
+                Ara
               </button>              
             </div>
           </div>
