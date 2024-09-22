@@ -1,7 +1,7 @@
 import { IoMdSearch } from "react-icons/io";
 import Darkmode from "./Darkmode";
 
-const Navbar = () => {
+const Navbar = ({ toggleLoginPopup }) => {
   return (
     <div className="bg-white dark:bg-gray-800 dark:text-white duration-200 relative z-40">
         <div className="py-4">
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <Darkmode />
 
                     {/* Login button */}
-                    <button className="text-purple-200 dark:text-purple-800 bg-purple-800 dark:bg-purple-200 cursor-pointer hover:scale-105 duration-300 py-2 px-8 rounded-full relative z-10">Login</button>
+                    <button className="text-purple-200 dark:text-purple-800 bg-purple-800 dark:bg-purple-200 cursor-pointer hover:scale-105 duration-300 py-2 px-8 rounded-full relative z-10" onClick={toggleLoginPopup}>Login</button>
                 </div>
             </div>
         </div>
