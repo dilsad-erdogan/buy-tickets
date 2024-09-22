@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaBus, FaPlane, FaTrain, FaTaxi } from "react-icons/fa";
 import { FaSailboat } from "react-icons/fa6";
+import Datetime from "react-datetime";
+import "react-datetime/css/react-datetime.css";
 
 const Vehicles = [
   {
@@ -35,14 +37,17 @@ const Tickets = () => {
   
   const [from, setFrom] = useState("Dikili");
   const [to, setTo] = useState("Konya");
-  const [date, setDate] = useState("19 Eyl");
-  const [isToday, setIsToday] = useState(true);
+  const [date, setDate] = useState(new Date());
 
   const handleClick = (name) => {
     setClickedButton(name);
   };
 
-  const searchClick = () => {};
+  const searchClick = () => {
+    console.log("from: ", from);
+    console.log("to: ", to);
+    console.log("date: ", date);
+  };
 
   return (
     <div className="my-14 md:mt-20">
@@ -59,7 +64,7 @@ const Tickets = () => {
 
         <div className="flex justify-center items-center py-20">
           <div className="bg-gray-200 dark:bg-gray-600 rounded-lg shadow-md items-center px-4 py-4">
-            <div className="p-5 grid grid-cols-1 lg:grid-cols-6 gap-4">
+            <div className="p-5 grid grid-cols-1 lg:grid-cols-5 gap-4">
               {/* Nereden */}
               <div className="flex flex-col text-center md:text-left">
                 <span className="text-sm text-gray-600 dark:text-gray-200">Nereden</span>
@@ -83,24 +88,12 @@ const Tickets = () => {
 
               {/* Gidiş Tarihi */}
               <div className="flex flex-col text-center md:text-left">
-                <span className="text-sm text-gray-600 dark:text-gray-200">Gidiş Tarihi</span>
-                <span className="text-lg font-semibold text-gray-600 dark:text-gray-200">{date}</span>
-              </div>
-
-              {/* Bugün/Yarın Radyo Seçimi */}
-              <div className="flex items-center gap-4">
-                <label className="flex items-center space-x-2">
-                  <input type="radio" name="day" value="today" checked={isToday} onChange={() => setIsToday(true)} className="form-radio text-green-600" />
-                  <span className="text-gray-600 dark:text-gray-200">Bugün</span>
-                </label>
-                <label className="flex items-center space-x-2">
-                  <input type="radio" name="day" value="tomorrow" checked={!isToday} onChange={() => setIsToday(false)} className="form-radio text-green-600" />
-                  <span className="text-gray-600 dark:text-gray-200">Yarın</span>
-                </label>
+                <span className="text-sm  text-gray-600 dark:text-gray-200">Gidiş Tarihi</span>
+                <Datetime value={date} onChange={(date) => { setDate(date); }} input={true} className="w-60 py-3 text-gray-600" />
               </div>
 
               {/* Otobüs Ara Butonu */}
-              <button className="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700" onClick={() => searchClick}>
+              <button className="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700" onClick={searchClick}>
                 Ara
               </button>              
             </div>
