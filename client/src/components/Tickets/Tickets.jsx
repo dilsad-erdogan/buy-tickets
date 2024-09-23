@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBus, FaPlane, FaTrain, FaTaxi } from "react-icons/fa";
 import { FaSailboat } from "react-icons/fa6";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
+import ticketService from "../../services/ticket";
 
 const Vehicles = [
   {
@@ -36,6 +37,7 @@ const Tickets = () => {
   const [clickedButton, setClickedButton] = useState("Bus");
   const [screen, setScreen] = useState("search");
   
+  const [id, setId] = useState('');
   const [from, setFrom] = useState("Dikili");
   const [to, setTo] = useState("Konya");
   const [date, setDate] = useState(new Date());
@@ -48,11 +50,33 @@ const Tickets = () => {
     setClickedButton(name);
   };
 
-  const handleTakeClick = () => {};
+  const handleTakeClick = async () => {
+    try{
+      const ticketData = { user_id: id, vehicle_name: clickedButton, from: from, to: to, date_time: date };
+      await ticketService.add(ticketData);
+      alert("Biletiniz ayırtılmıştır!");
+    } catch(error){
+      console.error(error);
+    }
+  };
 
   const searchClick = () => {
     setScreen("notscreen");
   };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setId(user._id || "");
+      setName(user.name || "");
+      setEmail(user.email || "");
+      setPhone(user.phone || "");
+    } else {
+      console.error("User not found in localStorage");
+    }
+  }, []);
 
   return (
     <div className="my-14 md:mt-20">
