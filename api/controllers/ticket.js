@@ -2,11 +2,13 @@ const Ticket = require('../models/Ticket');
 
 async function addTicket(req, res) {
     try{
-        const { user_id, vehicle_name, date_time } = req.body;
+        const { user_id, vehicle_name, from, to, date_time } = req.body;
 
         const ticket = new Ticket({
             user_id: user_id,
             vehicle_name: vehicle_name,
+            from: from,
+            to: to,
             date_time: date_time
         });
 
