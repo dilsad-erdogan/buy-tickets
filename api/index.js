@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const cors = require('cors');
 require('dotenv').config();
 
 var connectDB = require('./config/mongoDB');
 connectDB();
 
+app.use(cors());
 app.use(express.json());
 
 // Basit bir rota tanımlama
